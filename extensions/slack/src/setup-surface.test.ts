@@ -95,7 +95,7 @@ describe("slackSetupWizard.prepare", () => {
       cfg: { channels: { slack: {} } } as OpenClawConfig,
       prompter: createTestWizardPrompter({
         plain,
-        note: note as WizardPrompter["note"],
+        note,
       }),
     });
 
@@ -103,7 +103,7 @@ describe("slackSetupWizard.prepare", () => {
     expect(note).not.toHaveBeenCalled();
     const manifest = plain.mock.calls[0]?.[0];
     expect(typeof manifest).toBe("string");
-    expect(JSON.parse(String(manifest))).toEqual({
+    expect(JSON.parse(manifest)).toEqual({
       display_information: {
         name: "OpenClaw",
         description: "OpenClaw connector for OpenClaw",
